@@ -26,7 +26,7 @@ export default function Header() {
             />
           </svg>
           <span className="text-base font-semibold text-gray-900 dark:text-white">
-            금융 대시보드 만들기 - speckit
+            금융 분석 대시보드
           </span>
         </div>
         <ThemeToggle />

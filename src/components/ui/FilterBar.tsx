@@ -10,7 +10,7 @@ interface FilterBarProps {
 }
 
 const TYPES: { value: FilterState['selectedType']; label: string }[] = [
-  { value: 'line', label: '선형' },
+  { value: 'line', label: '선' },
   { value: 'bar', label: '막대' },
   { value: 'area', label: '영역' },
 ];
