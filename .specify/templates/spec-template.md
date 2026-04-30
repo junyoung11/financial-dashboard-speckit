@@ -1,128 +1,98 @@
-# Feature Specification: [FEATURE NAME]
+# [FEATURE_NAME] 기능 명세
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
-**Input**: User description: "$ARGUMENTS"
-
-## User Scenarios & Testing *(mandatory)*
-
-<!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
--->
-
-### User Story 1 - [Brief Title] (Priority: P1)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
-
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
+**작성일**: [DATE]  
+**버전**: [VERSION]  
+**상태**: 초안 | 검토 중 | 확정
 
 ---
 
-### User Story 2 - [Brief Title] (Priority: P2)
+## 1. 개요
 
-[Describe this user journey in plain language]
+[FEATURE_OVERVIEW]
 
-**Why this priority**: [Explain the value and why it has this priority level]
+### 배경 및 동기
 
-**Independent Test**: [Describe how this can be tested independently]
+[BACKGROUND]
 
-**Acceptance Scenarios**:
+### 범위
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+**포함**:
+- [IN_SCOPE_1]
 
----
-
-### User Story 3 - [Brief Title] (Priority: P3)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
-
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+**제외**:
+- [OUT_OF_SCOPE_1]
 
 ---
 
-[Add more user stories as needed, each with an assigned priority]
+## 2. 사용자 스토리
 
-### Edge Cases
+### US1. [USER_STORY_1_TITLE] (P1)
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
+**스토리**: [USER_STORY_1]
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+**수락 기준**:
+- [ ] [ACCEPTANCE_CRITERIA_1]
 
-## Requirements *(mandatory)*
+---
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
--->
+## 3. 기능 요구사항
 
-### Functional Requirements
+| ID | 요구사항 | 우선순위 | 관련 스토리 |
+|----|---------|---------|------------|
+| FR-001 | [REQUIREMENT] | P1 | US1 |
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+---
 
-*Example of marking unclear requirements:*
+## 4. 성공 기준
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+### 측정 가능한 결과
 
-### Key Entities *(include if feature involves data)*
+- **SC-001**: [SUCCESS_CRITERION_1]
 
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
+---
 
-## Success Criteria *(mandatory)*
+## 5. 핵심 엔터티
 
-<!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
--->
+| 엔터티 | 설명 | 주요 속성 |
+|-------|-----|---------|
+| [ENTITY] | [DESCRIPTION] | [ATTRIBUTES] |
 
-### Measurable Outcomes
+---
 
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+## 6. 엣지 케이스 및 에러 처리
 
-## Assumptions
+- [EDGE_CASE_1]
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right assumptions based on reasonable defaults
-  chosen when the feature description did not specify certain details.
--->
+---
 
-- [Assumption about target users, e.g., "Users have stable internet connectivity"]
-- [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
-- [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
-- [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
+## 7. 비기능 요구사항
+
+- **성능**: [PERFORMANCE]
+- **접근성**: [ACCESSIBILITY]
+- **보안**: [SECURITY]
+
+---
+
+## 8. 가정 사항
+
+- [ASSUMPTION_1]
+
+---
+
+## 9. 명확화 사항
+
+### 세션 [DATE]
+
+- Q: [QUESTION] → A: [ANSWER]
+
+---
+
+## 10. 사용자 시나리오 및 테스트
+
+### 주요 흐름
+
+1. [STEP_1]
+
+### 예외 흐름
+
+1. [EXCEPTION_STEP_1]

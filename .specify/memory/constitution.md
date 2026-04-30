@@ -1,50 +1,179 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+==================
+Version Change: 1.0.3 → 1.0.3 (재검증 — 사용자 명시 요구사항 전항목 일치 확인, 변경 없음)
+Modified Principles: 없음
+Added Sections: 없음
+Removed Sections: 없음
+Templates Requiring Updates:
+  - ✅ .specify/templates/plan-template.md (기술 스택, 디렉터리 구조, 헌법 검토 항목 정합성 확인 완료)
+  - ✅ .specify/templates/constitution-template.md (정합성 확인 완료)
+  - ✅ .specify/templates/spec-template.md (한국어 구조, 필수 섹션 정합성 확인 완료)
+  - ✅ .specify/templates/tasks-template.md (반응형 UI, 다크 모드, TypeScript strict, 한국어 문서 검증 태스크 포함 확인 완료)
+Follow-up TODOs: 없음 — 모든 원칙 및 템플릿이 사용자 요구사항(가독성, 재사용성, 컴포넌트 분리, 반응형 UI, 라이트/다크 모드, 차트 필터 확장 가능성, 한국어 문서화, 기존 파일 보존)과 완전히 일치함
+Verified: 2026-04-30
+-->
 
-## Core Principles
+# Financial Dashboard 프로젝트 헌법
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+**버전**: 1.0.3
+**비준일**: 2026-04-29
+**최종 수정일**: 2026-04-30
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+---
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+## 1. 프로젝트 개요
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+이 프로젝트는 금융 데이터 분석을 위한 대시보드 데모 애플리케이션이다. 사용자는 다양한 금융 지표, 차트, 필터를 통해 데이터를 시각적으로 탐색하고 분석할 수 있다. 데모 환경에서 Next.js와 React 기반 구조를 유지하며, 확장 가능한 컴포넌트 설계를 통해 유지보수성을 극대화한다.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### 기술 스택
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+- **프레임워크**: Next.js (기존 구조 유지)
+- **언어**: TypeScript
+- **UI 라이브러리**: React (기존 구조 유지)
+- **스타일링**: Tailwind CSS
+- **차트 라이브러리**: Chart.js
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### 실제 프로젝트 디렉터리 구조 (정규 기준)
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+현재 `financial-dashboard` 프로젝트는 **`src/` 서브디렉터리를 사용하지 않는다**. 아래가 정규 디렉터리 구조이다:
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+```
+financial-dashboard/
+├── app/              # Next.js App Router 페이지 및 레이아웃
+├── components/       # UI 컴포넌트 (하위 분류: charts/, filters/, layout/, ui/)
+├── lib/              # 유틸리티 함수, 데이터, Context (utils/hooks/context 역할 포함)
+└── public/           # 정적 자산
+```
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+새 파일 생성 시 경로 앞에 `src/`를 붙이지 않는다. 모든 소스 코드는 루트 레벨 디렉터리에 위치한다.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+---
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+## 2. 핵심 원칙
+
+### 원칙 1: 가독성 및 명확성 우선
+
+모든 코드는 구현자가 아닌 독자를 위해 작성되어야 한다.
+
+- MUST: 컴포넌트, 함수, 변수에는 목적을 명확히 드러내는 이름을 사용한다.
+- MUST: 복잡한 비즈니스 로직이나 차트 설정에는 한국어 주석으로 의도를 설명한다.
+- MUST: 마법 상수(magic number/string)는 명명된 상수로 추출한다.
+- SHOULD: 함수는 단일 책임 원칙을 따르며, 한 눈에 이해 가능한 크기를 유지한다.
+
+**근거**: 대시보드 특성상 다양한 차트 옵션과 필터 로직이 복잡해지기 쉬우므로, 코드 가독성이 유지보수 비용을 결정한다.
+
+### 원칙 2: 재사용 가능한 컴포넌트 설계
+
+컴포넌트는 특정 데이터에 종속되지 않고, 다양한 금융 데이터 유형에 재사용 가능하도록 설계되어야 한다.
+
+- MUST: UI 컴포넌트는 데이터 페칭 로직과 분리한다 (presentational vs. container 패턴).
+- MUST: 차트 컴포넌트는 데이터, 옵션, 레이블을 props로 받아 범용적으로 동작해야 한다.
+- MUST: 반복적으로 사용되는 UI 패턴(카드, 테이블, 필터, 배지 등)은 공유 컴포넌트로 추출한다.
+- SHOULD: 컴포넌트는 TypeScript interface/type으로 명확하게 타입 정의한다.
+
+**근거**: 금융 대시보드는 다수의 유사한 차트·테이블 패턴을 반복 사용하므로 재사용성이 개발 속도와 일관성을 결정한다.
+
+### 원칙 3: 명확한 컴포넌트 분리
+
+기능과 책임에 따라 컴포넌트를 계층적으로 분리하고 디렉터리 구조로 명시한다.
+
+- MUST: 페이지 컴포넌트, 레이아웃 컴포넌트, 공용 UI 컴포넌트, 도메인 특화 컴포넌트를 별도 디렉터리에 위치시킨다.
+- MUST: 차트 관련 컴포넌트는 `components/charts/` 하위에 집중시킨다.
+- MUST: 비즈니스 로직(데이터 변환, 필터 계산)은 `lib/` 하위 훅 또는 유틸리티 파일로 분리한다.
+- MUST: 새 파일 생성 시 `src/` 접두사를 사용하지 않는다. 루트 레벨 `app/`, `components/`, `lib/` 구조를 따른다.
+- SHOULD: 각 컴포넌트 파일은 하나의 주요 컴포넌트를 export한다.
+
+> **기존 구조 주의사항**: 현재 프로젝트는 `src/app/`, `src/components/` 형태가 아닌 루트 레벨 `app/`, `components/`, `lib/`를 사용한다. 구현 계획 문서에 `src/` 경로가 명시되어 있더라도 실제 파일은 루트 레벨에 생성한다.
+
+**근거**: 책임 분리 없이는 차트 필터 확장 시 전체 컴포넌트가 변경되는 리스크가 발생한다.
+
+### 원칙 4: 반응형 UI 일관성
+
+모든 UI는 모바일부터 데스크탑까지 일관된 레이아웃을 제공해야 한다.
+
+- MUST: Tailwind CSS의 반응형 접두사(`sm:`, `md:`, `lg:`, `xl:`)를 활용하여 모든 컴포넌트에 반응형 스타일을 적용한다.
+- MUST: 차트는 컨테이너 크기에 따라 자동으로 크기가 조정되어야 한다 (Chart.js `responsive: true` 옵션).
+- MUST: 그리드 레이아웃은 화면 크기별로 열 수가 조정되는 반응형 그리드를 사용한다.
+- SHOULD: 대시보드 카드/위젯의 최소 너비와 최대 너비를 명시적으로 정의한다.
+
+**근거**: 대시보드는 다양한 화면 크기에서 사용되므로 반응형 설계가 필수적이다.
+
+### 원칙 5: 라이트/다크 모드 일관성
+
+모든 컴포넌트는 라이트 모드와 다크 모드 모두에서 시각적 일관성을 보장해야 한다.
+
+- MUST: Tailwind CSS의 `dark:` 접두사를 활용하여 모든 색상 관련 클래스에 다크 모드 대응 클래스를 추가한다.
+- MUST: 차트 색상 팔레트는 라이트/다크 모드 전환 시 적절히 변경되어야 한다 (Chart.js 옵션에서 동적 처리).
+- MUST: 시스템 테마(OS 설정)와 수동 전환 모두를 지원하는 테마 상태 관리 메커니즘을 유지한다.
+- MUST: 텍스트, 배경, 테두리, 아이콘 색상 모두 다크 모드 변형을 가져야 한다.
+- SHOULD: 색상은 하드코딩하지 않고 Tailwind 디자인 토큰 또는 CSS 변수를 활용한다.
+
+**근거**: 금융 대시보드 사용자는 야간 작업이 많으므로 다크 모드 품질은 사용자 경험에 직접적인 영향을 미친다.
+
+### 원칙 6: 차트 필터 확장 가능성
+
+차트와 필터는 새로운 데이터 차원 추가 시 최소한의 코드 변경으로 확장 가능하도록 설계되어야 한다.
+
+- MUST: 필터 상태는 중앙 집중식으로 관리되어야 하며(Context API 또는 상태 관리 훅), 개별 컴포넌트가 독립적으로 필터 상태를 소유하지 않는다.
+- MUST: 차트 데이터 변환 로직은 필터 조건을 파라미터로 받는 순수 함수(pure function)로 구현한다.
+- MUST: 새로운 필터 유형 추가 시 기존 컴포넌트 수정이 아닌 필터 설정 확장으로 처리 가능한 구조를 지향한다.
+- SHOULD: 필터 컴포넌트는 필터 타입(날짜 범위, 카테고리, 수치 범위 등)을 props로 받아 범용적으로 동작해야 한다.
+
+**근거**: 금융 데이터는 시간, 자산 유형, 지역 등 다양한 차원으로 필터링되므로 확장 가능한 필터 구조가 핵심이다.
+
+---
+
+## 3. 코드 품질 기준
+
+- MUST: TypeScript strict 모드를 활성화하고, `any` 타입 사용을 금지한다. 불가피한 경우 `// eslint-disable` 주석과 사유를 명시한다.
+- MUST: 컴포넌트 props는 `interface` 또는 `type`으로 명시적으로 정의한다.
+- MUST: 비동기 처리에서 에러 핸들링을 명시적으로 구현한다 (try/catch 또는 error boundary).
+- SHOULD: 공유 컴포넌트는 JSDoc 주석(한국어)으로 사용법과 props를 문서화한다.
+- SHOULD: 코드 리뷰 기준: 가독성, 재사용성, 타입 안전성, 반응형 처리, 다크 모드 처리 여부를 확인한다.
+
+---
+
+## 4. 문서화 정책
+
+- MUST: 모든 문서 (spec.md, plan.md, tasks.md, 주석, README 등)는 **한국어**로 작성한다.
+- MUST: 컴포넌트 및 훅의 목적, 입출력, 사용 예시를 한국어 JSDoc으로 문서화한다.
+- SHOULD: 복잡한 차트 설정 또는 필터 로직에는 인라인 한국어 주석을 추가한다.
+- SHOULD: `README.md`에는 프로젝트 실행 방법, 디렉터리 구조, 주요 기능을 한국어로 기술한다.
+
+---
+
+## 5. 파일 관리 정책
+
+- MUST: 기존 파일은 명확한 이유 없이 덮어쓰거나 삭제하지 않는다.
+- MUST: 새 파일 생성 전에 기존 유사 파일의 존재 여부를 확인한다.
+- MUST: 파일 수정 시 기존 스타일, 명명 규칙, 임포트 패턴을 유지한다.
+- MUST: 구현 계획(plan.md) 문서에 `src/` 경로가 명시되어 있더라도, 실제 파일은 루트 레벨 구조(`app/`, `components/`, `lib/`)에 생성한다.
+- SHOULD: 대규모 리팩터링은 별도 브랜치에서 수행하고, 작은 단위의 변경 사항으로 분리한다.
+
+---
+
+## 6. 거버넌스
+
+### 수정 절차
+
+1. 헌법 수정이 필요한 경우, `/speckit.constitution` 명령을 통해 수정 제안을 작성한다.
+2. 수정 내용은 프로젝트 목표 및 기존 원칙과의 일관성을 검토한 후 적용한다.
+3. 수정 시 `LAST_AMENDED_DATE`를 오늘 날짜로 갱신하고 `CONSTITUTION_VERSION`을 적절히 올린다.
+4. 모든 수정은 커밋 메시지에 `docs: amend constitution to vX.Y.Z` 형식으로 기록한다.
+
+### 버전 관리 정책
+
+- **MAJOR**: 원칙 제거 또는 하위 호환성 없는 거버넌스 변경
+- **MINOR**: 신규 원칙 추가 또는 실질적인 가이드라인 확장
+- **PATCH**: 문구 정정, 명확화, 비의미론적 수정
+
+### 컴플라이언스 검토
+
+각 피처 스펙 작성(`/speckit.specify`) 및 계획 수립(`/speckit.plan`) 시 헌법의 핵심 원칙 준수 여부를 확인한다. 특히 다음 항목은 반드시 검토한다:
+- 컴포넌트 분리 원칙 준수 여부
+- 반응형 UI 구현 여부
+- 라이트/다크 모드 처리 여부
+- 차트 필터 확장 구조 적용 여부
+- 문서 한국어 작성 여부
+- 파일 경로가 루트 레벨 구조(`src/` 없음)를 따르는지 여부

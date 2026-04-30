@@ -1,104 +1,88 @@
-# Implementation Plan: [FEATURE]
+# [FEATURE_NAME] 구현 계획
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**작성일**: [DATE]  
+**기능 디렉터리**: [FEATURE_DIR]  
+**브랜치**: [BRANCH]
 
-**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/plan-template.md` for the execution workflow.
+---
 
-## Summary
+## 기술 컨텍스트
 
-[Extract from feature spec: primary requirement + technical approach from research]
+### 스택
 
-## Technical Context
+- **프레임워크**: Next.js (기존 구조 유지)
+- **언어**: TypeScript
+- **UI**: React
+- **스타일링**: Tailwind CSS
+- **차트**: Chart.js
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
+### 프로젝트 구조
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [e.g., library/cli/web-service/mobile-app/compiler/desktop-app or NEEDS CLARIFICATION]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
-
-## Constitution Check
-
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
-
-[Gates determined based on constitution file]
-
-## Project Structure
-
-### Documentation (this feature)
-
-```text
-specs/[###-feature]/
-├── plan.md              # This file (/speckit.plan command output)
-├── research.md          # Phase 0 output (/speckit.plan command)
-├── data-model.md        # Phase 1 output (/speckit.plan command)
-├── quickstart.md        # Phase 1 output (/speckit.plan command)
-├── contracts/           # Phase 1 output (/speckit.plan command)
-└── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
+```
+financial-dashboard/
+├── app/              # Next.js App Router 페이지 및 레이아웃
+├── components/
+│   ├── charts/       # 차트 컴포넌트
+│   ├── filters/      # 필터 컴포넌트
+│   ├── layout/       # 레이아웃 컴포넌트
+│   └── ui/           # 공용 UI 컴포넌트
+├── lib/              # 유틸리티 함수, 데이터, Context (hooks/utils/context 포함)
+└── public/           # 정적 자산
 ```
 
-### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
+> **주의**: `src/` 서브디렉터리를 사용하지 않는다. 모든 소스 파일은 루트 레벨 디렉터리에 위치한다.
 
-```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
+---
 
-tests/
-├── contract/
-├── integration/
-└── unit/
+## 헌법 검토 (Constitution Check)
 
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
+### 필수 검토 항목
 
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
+- [ ] 컴포넌트 분리 원칙 준수 (원칙 3)
+- [ ] 반응형 UI 구현 계획 포함 (원칙 4)
+- [ ] 라이트/다크 모드 처리 계획 포함 (원칙 5)
+- [ ] 차트 필터 확장 구조 적용 (원칙 6)
+- [ ] 문서 한국어 작성 확인 (문서화 정책)
+- [ ] TypeScript strict 모드 및 any 사용 금지 (코드 품질 기준)
 
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
+### 위반 사항
 
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
-```
+없음 (위반 발견 시 ERROR로 표시)
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+---
 
-## Complexity Tracking
+## Phase 0: 리서치
 
-> **Fill ONLY if Constitution Check has violations that must be justified**
+**산출물**: research.md
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+### 해결해야 할 불명확 사항
+
+- [NEEDS_CLARIFICATION_1]
+
+---
+
+## Phase 1: 설계 및 계약
+
+**산출물**: data-model.md, contracts/, quickstart.md
+
+### 데이터 모델
+
+[DATA_MODEL_REFERENCE]
+
+### 인터페이스 계약
+
+[CONTRACTS_REFERENCE]
+
+---
+
+## 의존성 및 제약사항
+
+- [DEPENDENCY_1]
+
+---
+
+## 위험 요소
+
+| 위험 | 영향도 | 완화 전략 |
+|-----|-------|---------|
+| [RISK] | 중 | [MITIGATION] |

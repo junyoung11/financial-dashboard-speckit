@@ -1,50 +1,83 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# [PROJECT_NAME] 프로젝트 헌법
 
-## Core Principles
+**버전**: [CONSTITUTION_VERSION]  
+**비준일**: [RATIFICATION_DATE]  
+**최종 수정일**: [LAST_AMENDED_DATE]
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+---
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+## 1. 프로젝트 개요
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+[PROJECT_DESCRIPTION]
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### 기술 스택
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+- **프레임워크**: [FRAMEWORK]
+- **언어**: [LANGUAGE]
+- **UI 라이브러리**: [UI_LIBRARY]
+- **스타일링**: [STYLING]
+- **차트 라이브러리**: [CHART_LIBRARY]
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+---
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## 2. 핵심 원칙
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### 원칙 1: [PRINCIPLE_1_NAME]
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+[PRINCIPLE_1_BODY]
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+### 원칙 2: [PRINCIPLE_2_NAME]
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+[PRINCIPLE_2_BODY]
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+### 원칙 3: [PRINCIPLE_3_NAME]
+
+[PRINCIPLE_3_BODY]
+
+### 원칙 4: [PRINCIPLE_4_NAME]
+
+[PRINCIPLE_4_BODY]
+
+### 원칙 5: [PRINCIPLE_5_NAME]
+
+[PRINCIPLE_5_BODY]
+
+### 원칙 6: [PRINCIPLE_6_NAME]
+
+[PRINCIPLE_6_BODY]
+
+---
+
+## 3. 코드 품질 기준
+
+[CODE_QUALITY_STANDARDS]
+
+---
+
+## 4. 문서화 정책
+
+[DOCUMENTATION_POLICY]
+
+---
+
+## 5. 파일 관리 정책
+
+[FILE_MANAGEMENT_POLICY]
+
+---
+
+## 6. 거버넌스
+
+### 수정 절차
+
+[AMENDMENT_PROCEDURE]
+
+### 버전 관리 정책
+
+- **MAJOR**: 원칙 제거 또는 하위 호환성 없는 거버넌스 변경
+- **MINOR**: 신규 원칙 추가 또는 실질적인 가이드라인 확장
+- **PATCH**: 문구 정정, 명확화, 비의미론적 수정
+
+### 컴플라이언스 검토
+
+[COMPLIANCE_REVIEW]

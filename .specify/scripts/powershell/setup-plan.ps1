@@ -1,63 +1,69 @@
-#!/usr/bin/env pwsh
-# Setup implementation plan for a feature
-
-[CmdletBinding()]
+<#
+.SYNOPSIS
+    speckit 계획 수립 설정 스크립트
+.DESCRIPTION
+    계획 수립에 필요한 경로 정보를 반환하고 plan.md 파일을 초기화한다.
+.PARAMETER Json
+    JSON 형식으로 출력
+#>
 param(
-    [switch]$Json,
-    [switch]$Help
+    [switch]$Json
 )
 
-$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = "Stop"
 
-# Show help if requested
-if ($Help) {
-    Write-Output "Usage: ./setup-plan.ps1 [-Json] [-Help]"
-    Write-Output "  -Json     Output results in JSON format"
-    Write-Output "  -Help     Show this help message"
-    exit 0
+# 경로 설정
+$featureJsonPath = Join-Path $PSScriptRoot "..\..\feature.json"
+$repoRoot = Join-Path $PSScriptRoot "..\..\.."
+$planTemplatePath = Join-Path $PSScriptRoot "..\..\templates\plan-template.md"
+
+# feature.json 로드
+if (-not (Test-Path $featureJsonPath)) {
+    Write-Error "feature.json을 찾을 수 없습니다. '/speckit.specify'를 먼저 실행하세요."
+    exit 1
 }
 
-# Load common functions
-. "$PSScriptRoot/common.ps1"
+$featureConfig = Get-Content $featureJsonPath -Raw | ConvertFrom-Json
+$featureDir = Join-Path $repoRoot $featureConfig.feature_directory
 
-# Get all paths and variables from common functions
-$paths = Get-FeaturePathsEnv
-
-# If feature.json pins an existing feature directory, branch naming is not required.
-if (-not (Test-FeatureJsonMatchesFeatureDir -RepoRoot $paths.REPO_ROOT -ActiveFeatureDir $paths.FEATURE_DIR)) {
-    if (-not (Test-FeatureBranch -Branch $paths.CURRENT_BRANCH -HasGit $paths.HAS_GIT)) {
-        exit 1
-    }
+if (-not (Test-Path $featureDir)) {
+    Write-Error "피처 디렉터리를 찾을 수 없습니다: $featureDir"
+    exit 1
 }
 
-# Ensure the feature directory exists
-New-Item -ItemType Directory -Path $paths.FEATURE_DIR -Force | Out-Null
-
-# Copy plan template if it exists, otherwise note it or create empty file
-$template = Resolve-Template -TemplateName 'plan-template' -RepoRoot $paths.REPO_ROOT
-if ($template -and (Test-Path $template)) { 
-    Copy-Item $template $paths.IMPL_PLAN -Force
-    Write-Output "Copied plan template to $($paths.IMPL_PLAN)"
-} else {
-    Write-Warning "Plan template not found"
-    # Create a basic plan file if template doesn't exist
-    New-Item -ItemType File -Path $paths.IMPL_PLAN -Force | Out-Null
+$specPath = Join-Path $featureDir "spec.md"
+if (-not (Test-Path $specPath)) {
+    Write-Error "spec.md를 찾을 수 없습니다. '/speckit.specify'를 먼저 실행하세요."
+    exit 1
 }
 
-# Output results
+$implPlanPath = Join-Path $featureDir "plan.md"
+
+# plan.md가 없으면 템플릿에서 복사
+if (-not (Test-Path $implPlanPath) -and (Test-Path $planTemplatePath)) {
+    Copy-Item $planTemplatePath $implPlanPath
+}
+
+# Git 브랜치 정보
+$branch = "main"
+try {
+    $branch = git rev-parse --abbrev-ref HEAD 2>$null
+    if (-not $branch) { $branch = "main" }
+} catch {
+    $branch = "main"
+}
+
+$result = @{
+    FEATURE_SPEC = $specPath
+    IMPL_PLAN    = $implPlanPath
+    SPECS_DIR    = Join-Path $repoRoot "specs"
+    BRANCH       = $branch
+}
+
 if ($Json) {
-    $result = [PSCustomObject]@{ 
-        FEATURE_SPEC = $paths.FEATURE_SPEC
-        IMPL_PLAN = $paths.IMPL_PLAN
-        SPECS_DIR = $paths.FEATURE_DIR
-        BRANCH = $paths.CURRENT_BRANCH
-        HAS_GIT = $paths.HAS_GIT
-    }
-    $result | ConvertTo-Json -Compress
+    $result | ConvertTo-Json -Depth 3
 } else {
-    Write-Output "FEATURE_SPEC: $($paths.FEATURE_SPEC)"
-    Write-Output "IMPL_PLAN: $($paths.IMPL_PLAN)"
-    Write-Output "SPECS_DIR: $($paths.FEATURE_DIR)"
-    Write-Output "BRANCH: $($paths.CURRENT_BRANCH)"
-    Write-Output "HAS_GIT: $($paths.HAS_GIT)"
+    foreach ($key in $result.Keys) {
+        Write-Output "${key}: $($result[$key])"
+    }
 }
